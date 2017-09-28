@@ -5,7 +5,11 @@
 </head>
 <body>
 	<h1>Welcome to MacDonalds</h1>
-	<a href="/orders/new">Create a order for us</a>
+	
+	<form action="/orders/new" method="GET">
+			<input type="hidden" name="_method" value="Create an order">
+			<input type="submit" value="Create an order">
+	</form>
 	<%= yield %>
 </body>
 </html>

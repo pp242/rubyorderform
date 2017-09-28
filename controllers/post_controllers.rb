@@ -65,13 +65,13 @@ class PostController < Sinatra::Base
 		id = params[:id].to_i
 		$orders[id][:title] = params[:title]
 		$orders[id][:body] = params[:body]
-		redirect '/orders/#{id}'
+		redirect '/orders'
 		
 	end
 
 	delete "/orders/:id" do
 		id = params[:id].to_i
-		$posts.delete_at(id)
+		$orders.delete_at(id)
 		redirect '/orders'
 	end
 
