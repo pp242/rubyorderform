@@ -3,16 +3,22 @@
 	
 	
 
-	<% @posts.each_with_index do |post,index| %>
+	<% @orders.each_with_index do |order,index| %>
 
-		<h2> Order Number: <%= post[:title] %></h2>
-		<p> Food Order: <%= post[:body] %></p>
-		<a href="http://localhost:9292/posts/<%=index%>">links</a>
-		<a href="/posts/ <%= index %>/edit">Edit</a>
+		<h2> Order Number: <%= index+1 %> - <%= order[:title] %></h2>
+		<p> Food Order: <%= order[:body] %></p>
+		
 		<br>
+		<form action="http://localhost:9292/orders/<%=index%>" method="GET">
+			<input type="hidden" name="_method" value="Order Page">
+			<input type="submit" value="Order Page">
+		</form>
+		<form action="/orders/ <%= index %>/edit" method="GET">
+			<input type="hidden" name="_method" value="Edit">
+			<input type="submit" value="Edit">
+		</form>
 
-
-		<form action="/posts/<%=index%>" method="POST">
+		<form action="/orders/<%=index%>" method="POST">
 			<input type="hidden" name="_method" value="Delete">
 			<input type="submit" value="Delete">
 		</form>

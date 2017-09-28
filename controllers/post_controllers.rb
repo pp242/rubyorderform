@@ -9,16 +9,16 @@ class PostController < Sinatra::Base
 
 	
 
-	$posts = [{
-			title: "1"
+	$orders = [{
+			title: "Jenny",
 	      	body: "Big Mac - 2\nFries - 2\nMilkshake - 4\n Happy meal - 2"
 	    },
 	    {   
-	    	title: "2"  
+	    	title: "Niall" , 
 	      	body: "Wrap of the Day Meal - 2"
 	    },
 	    {
-	    	title: "3"
+	    	title: "Lucy",
 	      	body: "Happy Meal - 2"
 	    }]
 
@@ -27,52 +27,52 @@ class PostController < Sinatra::Base
 
 
 
-	get "/posts" do  		###index
-		@posts = $posts
+	get "/orders" do  		###index
+		@orders = $orders
 		@page_header = "All the Orders"
 		erb :"posts/index"
 	end	
 
-	get "/posts/new" do 			### new
+	get "/orders/new" do 			### new
 		erb :"posts/new"
 	end	
 
-	post "/posts" do 			### create
-		new_post = {
+	post "/orders" do 			### create
+		new_order = {
 			title: params[:title],
 			body: params[:body]
 		}
-		$posts << new_post
-		redirect '/posts'
+		$orders << new_order
+		redirect '/orders'
 		
 	end
 
 
-	get "/posts/:id" do 		### show
+	get "/orders/:id" do 		### show
 		id = (params[:id].to_i)+1
-		@posts = $posts[id-1]
-		@page_header = "Post #{id}"
+		@orders = $orders[id-1]
+		@page_header = "Order #{id}"
 		erb :"posts/show"
 	end	
 
-	get "/posts/:id/edit" do 		#### edit
+	get "/orders/:id/edit" do 		#### edit
 		@id = params[:id].to_i
-		@post = $posts[@id]
+		@order = $orders[@id]
 		erb :"posts/edit"
 	end
 	
-	put "/posts/:id" do 			### update
+	put "/orders/:id" do 			### update
 		id = params[:id].to_i
-		$posts[id][:title] = params[:title]
-		$posts[id][:body] = params[:body]
-		redirect '/posts/#{id}'
+		$orders[id][:title] = params[:title]
+		$orders[id][:body] = params[:body]
+		redirect '/orders/#{id}'
 		
 	end
 
-	delete "/posts/:id" do
+	delete "/orders/:id" do
 		id = params[:id].to_i
 		$posts.delete_at(id)
-		redirect '/posts'
+		redirect '/orders'
 	end
 
 end	
