@@ -1,0 +1,23 @@
+ 
+	<h1><%= @page_header %></h1>
+	
+	
+
+	<% @posts.each_with_index do |post,index| %>
+
+		<h2> Order Number: <%= post[:title] %></h2>
+		<p> Food Order: <%= post[:body] %></p>
+		<a href="http://localhost:9292/posts/<%=index%>">links</a>
+		<a href="/posts/ <%= index %>/edit">Edit</a>
+		<br>
+
+
+		<form action="/posts/<%=index%>" method="POST">
+			<input type="hidden" name="_method" value="Delete">
+			<input type="submit" value="Delete">
+		</form>
+
+
+	<% end %>
+
+
